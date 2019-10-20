@@ -1,5 +1,5 @@
 node_modules
-config
+config/dev.js
 config.env
 cjs.js
 json.js
