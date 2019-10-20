@@ -123,6 +123,7 @@ module.exports = {
           console.log(error.message);
         }
       } else if (req.query.hasOwnProperty("date")) {
+        console.log(req.query);
         // GET COORDS FOR CITY ENTERED
         const coords = await weatherController.fetchCoords(
           req.query.city,
@@ -130,7 +131,6 @@ module.exports = {
         );
         // GET DATE IN SECONDS
         const time = weatherController.getEpoch(
-          console.log(req.query);
           `${req.query.date}T12:00:00-06:00`
         );
         // GETTING ONE WEATHER FOR ON DATE
