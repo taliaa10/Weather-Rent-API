@@ -5,11 +5,8 @@ API Link: https://weather-rent-app.herokuapp.com
 ### Average weather query over a date range:
 
 ex:
-
-
-What was the average rainfall in Houston in August 2017?
-
-Average humidity in San Francisco in June 2019?
+1. What was the average rainfall in Houston in August 2017?
+2. Average humidity in San Francisco in June 2019?
 
 api/weather-rent?city=Houston&state=tx&startDate=2017-08-01&endDate=2017-08-31&weatherCondition=precipIntensity
 
