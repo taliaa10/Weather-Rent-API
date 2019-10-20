@@ -5,5 +5,7 @@ module.exports = {
   languageCode: process.env.DIALOGFLOW_LANGUAGE_CODE,
   private_key: process.env.GOOGLE_PRIVATE_KEY,
   client_email: process.env.GOOGLE_CLIENT_EMAIL,
-  DATABASE_URL: process.env.DATABASE_URL
+  DATABASE_URL: process.env.DATABASE_URL,
+  geocodeAPIKey: process.env.GEOCODE_API_KEY,
+  darkskyAPIKey: process.env.DARKSKY_API_KEY
 };
