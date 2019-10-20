@@ -34,7 +34,9 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const PORT = process.env.PORT || 8000;
-app.listen(PORT, () => console.log(`Weather-Rent app is running on ${PORT}`));
+const server = app.listen(PORT, () =>
+  console.log(`Weather-Rent app is running on ${PORT}`)
+);
 
 process.on("unhandledRejection", err => {
   console.log("UNHANDLER REJECTION! 💥 Shutting down...");
