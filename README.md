@@ -4,7 +4,7 @@ API Link: https://weather-rent-app.herokuapp.com
 
 ### Average weather query over a date range:
 
-ex:
+Questions:
 1. What was the average rainfall in Houston in August 2017?
 2. Average humidity in San Francisco in June 2019?
 
@@ -12,6 +12,7 @@ api/weather-rent?city=Houston&state=tx&startDate=2017-08-01&endDate=2017-08-31&w
 
 #### Parameters
     
+#### Result
 
 ```json
 {
@@ -48,12 +49,16 @@ Use Postman or any... to make a POST request of any variation of the question be
 <hr>
 <h3>Rent data based on city:</h3>
 
-ex:<br>
-Which cities have a rent lower than \$2000? <br>
-Cities that have rent equal $1500? <br>
+Questions:
+1. Which cities have a rent lower than \$2000?
+2. Cities that have rent equal $1500?
 
-api/weather-rent?rent[gte]=1500&rent[lte]=2000 <br>
-api/weather-rent?rent=1500 <br>
+api/weather-rent?rent[gte]=1500&rent[lte]=2000
+api/weather-rent?rent=1500
+
+#### Parameters
+    
+#### Result
 
 ```json
 {
@@ -102,10 +107,13 @@ api/weather-rent?rent=1500 <br>
 <hr>
 <h3>Average weather query over a date range and rent in city info:</h3>
 
-ex:<br>
-What cities have a rent less than $2000 but likely to be above 50 degrees Fahrenheit on New Year's Eve?<br>
+Questions:
+1. What cities have a rent less than $2000 but likely to be above 50 degrees Fahrenheit on New Year's Eve?<br>
+2. api/weather-rent?date=2018-12-31&weatherCondition=temparature&rent[lt]=2000
 
-api/weather-rent?date=2018-12-31&weatherCondition=temparature&rent[lt]=2000
+#### Parameters
+    
+#### Result
 
 ```json
 {
