@@ -1,7 +1,5 @@
 const { WebhookClient, Payload } = require("dialogflow-fulfillment");
 const weatherController = require("../controllers/weatherController");
-// const models = require("../models");
-const utils = require("../utils/helpers");
 const fs = require("fs-promise");
 
 module.exports = app => {
