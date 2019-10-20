@@ -26,9 +26,19 @@ api/weather-rent?city=Houston&state=tx&startDate=2017-08-01&endDate=2017-08-31&w
 }
 ```
 
-Bonus:
+<h3>Bonus:</h3>
 
-Post question to DialogFlow and get a fully automated, human-like response!
+Post question to DialogFlow and get a fully automated, human-like response!<br>
+![](df.png) <br><br>
+
+Use Postman or any... to make a POST request of any variation of the question below at the endpoint
+<b>api/df_text_query<b>
+    
+```
+{
+    "text": "What was the average rainfall in Houston in August 2017?"
+}
+```
 
 
 <br> <br>
