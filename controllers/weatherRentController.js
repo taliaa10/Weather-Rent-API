@@ -130,6 +130,7 @@ module.exports = {
         );
         // GET DATE IN SECONDS
         const time = weatherController.getEpoch(
+          console.log(req.query);
           `${req.query.date}T12:00:00-06:00`
         );
         // GETTING ONE WEATHER FOR ON DATE
