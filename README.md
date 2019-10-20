@@ -10,7 +10,7 @@ Average humidity in San Francisco in June 2019? <br>
 
 api/weather-rent?city=Houston&state=tx&startDate=2017-08-01&endDate=2017-08-31&weatherCondition=precipIntensity
 
-```
+```json
 {
     "status": "success",
     "data": {
@@ -28,13 +28,13 @@ api/weather-rent?city=Houston&state=tx&startDate=2017-08-01&endDate=2017-08-31&w
 
 <h3>Bonus:</h3>
 
-Post question to DialogFlow and get a fully automated, human-like response!<br>
+Post direct question to DialogFlow and get a fully automated, human-like response!<br>
 ![](df.png) <br><br>
 
 Use Postman or any... to make a POST request of any variation of the question below at the endpoint
 <b>api/df_text_query<b>
     
-```
+```json
 {
     "text": "What was the average rainfall in Houston in August 2017?"
 }
