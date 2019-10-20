@@ -22,6 +22,10 @@ app.all(function(req, res, next) {
   if (req.query.limit <= 10) req.query.limit = 10;
   next();
 });
+
+app.get("/", (req, res) => {
+  res.send("Please see readme for instructions");
+});
 // ROUTES
 require("./routes/weatherRentRoutes")(app);
 // All user input will go through the dialogFlowRoutes
