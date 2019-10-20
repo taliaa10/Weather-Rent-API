@@ -1,10 +1,6 @@
 const weatherController = require("../controllers/weatherController");
 const City = require("../models/cityModel");
-const axios = require("axios");
-const config = require("../config/app-config");
-const moment = require("moment");
 const fs = require("fs-promise");
-// const allCityWeathers = require("../allWeathers");
 
 module.exports = {
   getAllInfo: async (req, res, next) => {
