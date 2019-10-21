@@ -79,16 +79,37 @@ module.exports = {
         const allYears = weatherController.datesEpoch(years);
         const days = allYears.length;
 
-        const page = req.query.page;
-        const limit = req.query.limit;
+        // const page = req.query.page;
+        // const limit = req.query.limit;
+
+        // const startIndex = (page - 1) * limit;
+        // const endIndex = page * limit;
+
         let cityArray = [];
-        let cities;
+        let query;
         try {
           // GETTING WEATHERS FOR ALL CIITES
-          cities = await City.find(JSON.parse(queryStr));
+          query = City.find(JSON.parse(queryStr));
         } catch (error) {
           console.log(error);
         }
+
+        const page = req.query.page * 1 || 1;
+        const limit = req.query.limit * 1 || 100;
+        const skip = (page - 1) * limit;
+
+        query = query.skip(skip).limit(limit);
+
+        if (req.query.page) {
+          const numCities = await City.countDocuments();
+          if (skip > numCities) {
+            console.log("this page does not exist");
+          }
+        }
+
+        let cities = await query;
+
+        // const resultCities = cities.slice(startIndex, endIndex);
 
         try {
           await weatherController.asyncForEach(cities, async city => {
@@ -106,38 +127,13 @@ module.exports = {
               days
             );
 
-            // city.weather = {
-            //   weather: weatherResult,
-            //   weatherCondition: weatherCondition
-            // };
-
-            // city = {
-            //   city: city
-            //   // weather: city.weather.weather,
-            //   // weatherCondition: city.weather.weatherCondition
-            // };
             cityInfo = { ...city._doc };
             cityInfo.weatherResult = weatherResult;
             cityInfo.weatherCondition = weatherCondition;
-            console.log(cityInfo);
-            // console.log(city.city.weatherResult);
-            // console.log(city.city.rent);
-            // city.weather = {
-            //   weather: weatherResult,
-            //   weatherCondition: weatherCondition
-            // };
-            // console.log(city.city.weatherResult);
 
             cityArray.push(cityInfo);
-
-            // console.log(city);
-            // weatherCondition= city.weather.weatherCondition
-            // const startIndex = (page - 1) * limit;
-            // const endIndex = page * limit;
-            // const cityResults = city.slice(startIndex, endIndex);
-            // data = city;
           });
-          // console.log(cityArray);
+          // data = cityArray;
           data = cityArray;
         } catch (error) {
           console.log(error.message);
@@ -157,23 +153,17 @@ module.exports = {
         let weather = await weatherController.fetchWeather(coords, time);
         weatherResult = weather.daily.data[0][weatherCondition];
 
-        data = {
-          weather: weatherResult,
-          query
-        };
+        data = weatherResult;
       } else if (req.query.hasOwnProperty("rent")) {
         // RENT QUERY
         rentResult = await City.find(JSON.parse(queryStr));
 
-        data = {
-          results: rentResult.length,
-          rent: rentResult,
-          query
-        };
+        data = rentResult;
       }
 
       res.status(200).json({
         status: "success",
+        results: data.length,
         data: data
       });
     } catch (error) {
