@@ -81,6 +81,7 @@ module.exports = {
 
         const page = req.query.page;
         const limit = req.query.limit;
+        let cityArray = [];
         let cities;
         try {
           // GETTING WEATHERS FOR ALL CIITES
@@ -105,20 +106,39 @@ module.exports = {
               days
             );
 
-            city.weather = {
-              weather: weatherResult,
-              weatherCondition: weatherCondition
-            };
+            // city.weather = {
+            //   weather: weatherResult,
+            //   weatherCondition: weatherCondition
+            // };
 
-            city = {
-              city: city,
-              weather: city.weather
-            };
+            // city = {
+            //   city: city
+            //   // weather: city.weather.weather,
+            //   // weatherCondition: city.weather.weatherCondition
+            // };
+            cityInfo = { ...city._doc };
+            cityInfo.weatherResult = weatherResult;
+            cityInfo.weatherCondition = weatherCondition;
+            console.log(cityInfo);
+            // console.log(city.city.weatherResult);
+            // console.log(city.city.rent);
+            // city.weather = {
+            //   weather: weatherResult,
+            //   weatherCondition: weatherCondition
+            // };
+            // console.log(city.city.weatherResult);
+
+            cityArray.push(cityInfo);
+
+            // console.log(city);
+            // weatherCondition= city.weather.weatherCondition
             // const startIndex = (page - 1) * limit;
             // const endIndex = page * limit;
             // const cityResults = city.slice(startIndex, endIndex);
-            data = city;
+            // data = city;
           });
+          // console.log(cityArray);
+          data = cityArray;
         } catch (error) {
           console.log(error.message);
         }
