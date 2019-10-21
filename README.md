@@ -121,19 +121,49 @@ Example Query Strings:
 
 ```json
 {
-    "status": "success",
-    "data": {
-        "city": {
-            "_id": "5dabcaf4032ab97b9eff78bd",
-            "city": "Mount Morris",
-            "state": "MI",
-            "rent": 555
-        },
-        "weather": {
-            "weather": "23.7240",
-            "weatherCondition": "temparature"
-        }
+  "status": "success",
+  "data": [
+    {
+      "_id": "5dabcaf3032ab97b9eff50dc",
+      "city": "Flint",
+      "state": "MI",
+      "rent": 549,
+      "weatherResult": "23.7780",
+      "weatherCondition": "temparature"
+    },
+    {
+      "_id": "5dabcaf3032ab97b9eff5266",
+      "city": "Youngstown",
+      "state": "OH",
+      "rent": 569,
+      "weatherResult": "27.7620",
+      "weatherCondition": "temparature"
+    },
+    {
+      "_id": "5dabcaf3032ab97b9eff606c",
+      "city": "Beecher",
+      "state": "MI",
+      "rent": 518,
+      "weatherResult": "21.4860",
+      "weatherCondition": "temparature"
+    },
+    {
+      "_id": "5dabcaf4032ab97b9eff7105",
+      "city": "West End-Cobb Town",
+      "state": "AL",
+      "rent": 590,
+      "weatherResult": "46.2100",
+      "weatherCondition": "temparature"
+    },
+    {
+      "_id": "5dabcaf4032ab97b9eff78bd",
+      "city": "Mount Morris",
+      "state": "MI",
+      "rent": 555,
+      "weatherResult": "23.7240",
+      "weatherCondition": "temparature"
     }
+  ]
 }
 ```
 
