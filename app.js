@@ -4,7 +4,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
-const paginate = require("express-paginate");
+const compression = require("compression");
 
 // 1) MIDDLEWARES
 app.use(cors());
@@ -17,11 +17,7 @@ app.use(helmet());
 app.use(mongoSanitize());
 // DATA SANITIZATION AGAINST XSS
 app.use(xss());
-app.all(function(req, res, next) {
-  // set default or minimum is 10 (as it was prior to v0.2.0)
-  if (req.query.limit <= 10) req.query.limit = 10;
-  next();
-});
+app.use(compression());
 
 app.get("/", (req, res) => {
   res.send("Please see readme for instructions");

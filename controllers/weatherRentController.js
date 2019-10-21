@@ -1,6 +1,5 @@
 const weatherController = require("../controllers/weatherController");
 const City = require("../models/cityModel");
-const fs = require("fs-promise");
 
 module.exports = {
   getAllInfo: async (req, res, next) => {
@@ -19,7 +18,10 @@ module.exports = {
         "fields",
         "city",
         "date",
-        "weatherCondition"
+        "weatherCondition",
+        "weather",
+        "weather[gt]",
+        "weather[lt]"
       ];
       excludedFields.forEach(el => delete queryObj[el]);
 
@@ -27,7 +29,6 @@ module.exports = {
       let queryStr = JSON.stringify(queryObj);
       queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`);
 
-      const stat = req.query.stat;
       const weatherCondition = req.query.weatherCondition;
 
       if (
@@ -64,10 +65,7 @@ module.exports = {
           days
         );
 
-        // rent.weather = "hey";
-
         data = {
-          results: weatherResult.length,
           weather: weatherResult,
           query
         };
@@ -79,11 +77,8 @@ module.exports = {
         const allYears = weatherController.datesEpoch(years);
         const days = allYears.length;
 
-        // const page = req.query.page;
-        // const limit = req.query.limit;
-
-        // const startIndex = (page - 1) * limit;
-        // const endIndex = page * limit;
+        const w = Object.keys(req.query.weather)[0];
+        const reqWeather = Object.values(req.query.weather)[0];
 
         let cityArray = [];
         let query;
@@ -94,6 +89,7 @@ module.exports = {
           console.log(error);
         }
 
+        // PAGINATION
         const page = req.query.page * 1 || 1;
         const limit = req.query.limit * 1 || 100;
         const skip = (page - 1) * limit;
@@ -107,6 +103,7 @@ module.exports = {
           }
         }
 
+        // GETTING QUERIES FROM DB
         let cities = await query;
 
         try {
@@ -128,11 +125,21 @@ module.exports = {
             cityInfo = { ...city._doc };
             cityInfo.averageWeather = averageWeather;
             cityInfo.weatherType = weatherCondition;
-            cityInfo.fiveYearAvgOf = req.query.date;
+            cityInfo.fiveYearAvgFrom = req.query.date;
 
             cityArray.push(cityInfo);
           });
-          data = cityArray;
+
+          filteredCities = cityArray.filter(city => {
+            switch (w) {
+              case "gt":
+                return parseInt(city.averageWeather) > parseInt(reqWeather);
+              case "lt":
+                return parseInt(city.averageWeather) < parseInt(reqWeather);
+            }
+          });
+
+          data = filteredCities;
         } catch (error) {
           console.log(error.message);
         }
