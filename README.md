@@ -36,7 +36,7 @@ Example Query Strings:
 Post direct question to DialogFlow and get a fully automated, human-like response!<br>
 ![](df.png) <br><br>
 
-Use Postman or any... to make a POST request of any variation of the question below at the endpoint
+Use Postman or any API dev tool to make a POST request of any variation of the question below at the endpoint
 <b>api/df_text_query<b>
     
 ```json
