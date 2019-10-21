@@ -109,8 +109,6 @@ module.exports = {
 
         let cities = await query;
 
-        // const resultCities = cities.slice(startIndex, endIndex);
-
         try {
           await weatherController.asyncForEach(cities, async city => {
             city.coords = await weatherController.fetchCoords(city);
@@ -121,19 +119,19 @@ module.exports = {
               )
             );
 
-            let weatherResult = await weatherController.getDailyAverage(
+            let averageWeather = await weatherController.getDailyAverage(
               allWeathers,
               weatherCondition,
               days
             );
 
             cityInfo = { ...city._doc };
-            cityInfo.weatherResult = weatherResult;
-            cityInfo.weatherCondition = weatherCondition;
+            cityInfo.averageWeather = averageWeather;
+            cityInfo.weatherType = weatherCondition;
+            cityInfo.fiveYearAvgOf = req.query.date;
 
             cityArray.push(cityInfo);
           });
-          // data = cityArray;
           data = cityArray;
         } catch (error) {
           console.log(error.message);
