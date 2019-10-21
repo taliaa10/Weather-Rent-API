@@ -65,44 +65,39 @@ Example Query Strings:
 ```json
 {
     "status": "success",
-    "data": {
-        "results": 5,
-        "rent": [
-            {
-                "_id": "5dabcaf3032ab97b9eff512e",
-                "city": "West Jordan",
-                "state": "UT",
-                "rent": 1500
-            },
-            {
-                "_id": "5dabcaf3032ab97b9eff621d",
-                "city": "Morrisville",
-                "state": "PA",
-                "rent": 1500
-            },
-            {
-                "_id": "5dabcaf3032ab97b9eff643a",
-                "city": "Princeton",
-                "state": "TX",
-                "rent": 1500
-            },
-            {
-                "_id": "5dabcaf4032ab97b9eff6b29",
-                "city": "Fairfax",
-                "state": "VT",
-                "rent": 1500
-            },
-            {
-                "_id": "5dabcaf4032ab97b9eff77fe",
-                "city": "Ellenburg",
-                "state": "NY",
-                "rent": 1500
-            }
-        ],
-        "query": {
-            "rent": "1500"
+    "results": 5,
+    "data": [
+        {
+            "_id": "5dabcaf3032ab97b9eff512e",
+            "city": "West Jordan",
+            "state": "UT",
+            "rent": 1500
+        },
+        {
+            "_id": "5dabcaf3032ab97b9eff621d",
+            "city": "Morrisville",
+            "state": "PA",
+            "rent": 1500
+        },
+        {
+            "_id": "5dabcaf3032ab97b9eff643a",
+            "city": "Princeton",
+            "state": "TX",
+            "rent": 1500
+        },
+        {
+            "_id": "5dabcaf4032ab97b9eff6b29",
+            "city": "Fairfax",
+            "state": "VT",
+            "rent": 1500
+        },
+        {
+            "_id": "5dabcaf4032ab97b9eff77fe",
+            "city": "Ellenburg",
+            "state": "NY",
+            "rent": 1500
         }
-    }
+    ]
 }
 ```
 
