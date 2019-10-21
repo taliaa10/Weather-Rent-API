@@ -108,54 +108,175 @@ Questions:
 1. What cities have a rent less than $2000 but likely to be above 50 degrees Fahrenheit on New Year's Eve?<br>
 
 Example Query Strings:
-1. /api/weather-rent/YOURAPIKEY?date=2018-12-31&weatherCondition=temparature&rent[lt]=2000
+1. /api/weather-rent/YOURAPIKEY?date=2018-12-31&weatherCondition=temparature&rent[lte]=2000&page=1&limit=20
 
 #### Parameters
     
 #### Result
 
 ```json
-{
+
   "status": "success",
+  "results": 20,
   "data": [
     {
-      "_id": "5dabcaf3032ab97b9eff50dc",
-      "city": "Flint",
-      "state": "MI",
-      "rent": 549,
-      "weatherResult": "23.7780",
+      "_id": "5dabcaf3032ab97b9eff4ffe",
+      "city": "Houston",
+      "state": "TX",
+      "rent": 1430,
+      "weatherResult": "52.1560",
       "weatherCondition": "temparature"
     },
     {
-      "_id": "5dabcaf3032ab97b9eff5266",
-      "city": "Youngstown",
+      "_id": "5dabcaf3032ab97b9eff5000",
+      "city": "Chicago",
+      "state": "IL",
+      "rent": 1632,
+      "weatherResult": "22.2540",
+      "weatherCondition": "temparature"
+    },
+    {
+      "_id": "5dabcaf3032ab97b9eff5001",
+      "city": "Philadelphia",
+      "state": "PA",
+      "rent": 1212,
+      "weatherResult": "34.6080",
+      "weatherCondition": "temparature"
+    },
+    {
+      "_id": "5dabcaf3032ab97b9eff5002",
+      "city": "Phoenix",
+      "state": "AZ",
+      "rent": 1247,
+      "weatherResult": "63.7040",
+      "weatherCondition": "temparature"
+    },
+    {
+      "_id": "5dabcaf3032ab97b9eff5003",
+      "city": "Las Vegas",
+      "state": "NV",
+      "rent": 1239,
+      "weatherResult": "51.3320",
+      "weatherCondition": "temparature"
+    },
+    {
+      "_id": "5dabcaf3032ab97b9eff5004",
+      "city": "San Antonio",
+      "state": "TX",
+      "rent": 1250,
+      "weatherResult": "50.7200",
+      "weatherCondition": "temparature"
+    },
+    {
+      "_id": "5dabcaf3032ab97b9eff5007",
+      "city": "Dallas",
+      "state": "TX",
+      "rent": 1391,
+      "weatherResult": "44.1460",
+      "weatherCondition": "temparature"
+    },
+    {
+      "_id": "5dabcaf3032ab97b9eff5009",
+      "city": "Austin",
+      "state": "TX",
+      "rent": 1780,
+      "weatherResult": "47.8220",
+      "weatherCondition": "temparature"
+    },
+    {
+      "_id": "5dabcaf3032ab97b9eff500a",
+      "city": "Fort Worth",
+      "state": "TX",
+      "rent": 1375,
+      "weatherResult": "43.4940",
+      "weatherCondition": "temparature"
+    },
+    {
+      "_id": "5dabcaf3032ab97b9eff500b",
+      "city": "Detroit",
+      "state": "MI",
+      "rent": 750,
+      "weatherResult": "26.1620",
+      "weatherCondition": "temparature"
+    },
+    {
+      "_id": "5dabcaf3032ab97b9eff500c",
+      "city": "Columbus",
       "state": "OH",
-      "rent": 569,
-      "weatherResult": "27.7620",
+      "rent": 1116,
+      "weatherResult": "28.2540",
       "weatherCondition": "temparature"
     },
     {
-      "_id": "5dabcaf3032ab97b9eff606c",
-      "city": "Beecher",
-      "state": "MI",
-      "rent": 518,
-      "weatherResult": "21.4860",
+      "_id": "5dabcaf3032ab97b9eff500d",
+      "city": "Memphis",
+      "state": "TN",
+      "rent": 843,
+      "weatherResult": "41.0560",
       "weatherCondition": "temparature"
     },
     {
-      "_id": "5dabcaf4032ab97b9eff7105",
-      "city": "West End-Cobb Town",
-      "state": "AL",
-      "rent": 590,
-      "weatherResult": "46.2100",
+      "_id": "5dabcaf3032ab97b9eff500e",
+      "city": "Jacksonville",
+      "state": "FL",
+      "rent": 1151,
+      "weatherResult": "65.5760",
       "weatherCondition": "temparature"
     },
     {
-      "_id": "5dabcaf4032ab97b9eff78bd",
-      "city": "Mount Morris",
-      "state": "MI",
-      "rent": 555,
-      "weatherResult": "23.7240",
+      "_id": "5dabcaf3032ab97b9eff500f",
+      "city": "Charlotte",
+      "state": "NC",
+      "rent": 1294,
+      "weatherResult": "47.7280",
+      "weatherCondition": "temparature"
+    },
+    {
+      "_id": "5dabcaf3032ab97b9eff5011",
+      "city": "Indianapolis",
+      "state": "IN",
+      "rent": 1078,
+      "weatherResult": "25.4780",
+      "weatherCondition": "temparature"
+    },
+    {
+      "_id": "5dabcaf3032ab97b9eff5012",
+      "city": "El Paso",
+      "state": "TX",
+      "rent": 993,
+      "weatherResult": "48.0580",
+      "weatherCondition": "temparature"
+    },
+    {
+      "_id": "5dabcaf3032ab97b9eff5014",
+      "city": "Denver",
+      "state": "CO",
+      "rent": 1974,
+      "weatherResult": "32.2700",
+      "weatherCondition": "temparature"
+    },
+    {
+      "_id": "5dabcaf3032ab97b9eff5015",
+      "city": "Baltimore",
+      "state": "MD",
+      "rent": 1306,
+      "weatherResult": "36.7680",
+      "weatherCondition": "temparature"
+    },
+    {
+      "_id": "5dabcaf3032ab97b9eff5018",
+      "city": "Portland",
+      "state": "OR",
+      "rent": 1859,
+      "weatherResult": "41.9960",
+      "weatherCondition": "temparature"
+    },
+    {
+      "_id": "5dabcaf3032ab97b9eff5019",
+      "city": "Oklahoma City",
+      "state": "OK",
+      "rent": 1073,
+      "weatherResult": "33.6640",
       "weatherCondition": "temparature"
     }
   ]
