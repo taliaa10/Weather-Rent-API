@@ -9,7 +9,7 @@ Questions:
 2. Average humidity in San Francisco in June 2019?
 
 Example Query Strings:
-1. **api/weather-rent/YOURAPIKEY?city=Houston&state=tx&startDate=2017-08-01&endDate=2017-08-31&weatherCondition=precipIntensity**
+1. **/api/weather-rent/YOURAPIKEY?city=Houston&state=tx&startDate=2017-08-01&endDate=2017-08-31&weatherCondition=precipIntensity**
 
 #### Parameters
     
@@ -55,8 +55,8 @@ Questions:
 2. Cities that have rent equal $1500?
 
 Example Query Strings:
-1. api/weather-rent/YOURAPIKEY?rent[gte]=1500&rent[lte]=2000
-2. api/weather-rent/YOURAPIKEY?rent=1500
+1. /api/weather-rent/YOURAPIKEY?rent[gte]=1500&rent[lte]=2000
+2. /api/weather-rent/YOURAPIKEY?rent=1500
 
 #### Parameters
     
@@ -65,44 +65,39 @@ Example Query Strings:
 ```json
 {
     "status": "success",
-    "data": {
-        "results": 5,
-        "rent": [
-            {
-                "_id": "5dabcaf3032ab97b9eff512e",
-                "city": "West Jordan",
-                "state": "UT",
-                "rent": 1500
-            },
-            {
-                "_id": "5dabcaf3032ab97b9eff621d",
-                "city": "Morrisville",
-                "state": "PA",
-                "rent": 1500
-            },
-            {
-                "_id": "5dabcaf3032ab97b9eff643a",
-                "city": "Princeton",
-                "state": "TX",
-                "rent": 1500
-            },
-            {
-                "_id": "5dabcaf4032ab97b9eff6b29",
-                "city": "Fairfax",
-                "state": "VT",
-                "rent": 1500
-            },
-            {
-                "_id": "5dabcaf4032ab97b9eff77fe",
-                "city": "Ellenburg",
-                "state": "NY",
-                "rent": 1500
-            }
-        ],
-        "query": {
-            "rent": "1500"
+    "results": 5,
+    "data": [
+        {
+            "_id": "5dabcaf3032ab97b9eff512e",
+            "city": "West Jordan",
+            "state": "UT",
+            "rent": 1500
+        },
+        {
+            "_id": "5dabcaf3032ab97b9eff621d",
+            "city": "Morrisville",
+            "state": "PA",
+            "rent": 1500
+        },
+        {
+            "_id": "5dabcaf3032ab97b9eff643a",
+            "city": "Princeton",
+            "state": "TX",
+            "rent": 1500
+        },
+        {
+            "_id": "5dabcaf4032ab97b9eff6b29",
+            "city": "Fairfax",
+            "state": "VT",
+            "rent": 1500
+        },
+        {
+            "_id": "5dabcaf4032ab97b9eff77fe",
+            "city": "Ellenburg",
+            "state": "NY",
+            "rent": 1500
         }
-    }
+    ]
 }
 ```
 
@@ -113,7 +108,7 @@ Questions:
 1. What cities have a rent less than $2000 but likely to be above 50 degrees Fahrenheit on New Year's Eve?<br>
 
 Example Query Strings:
-1. api/weather-rent/YOURAPIKEY?date=2018-12-31&weatherCondition=temparature&rent[lt]=2000
+1. /api/weather-rent/YOURAPIKEY?date=2018-12-31&weatherCondition=temparature&rent[lt]=2000
 
 #### Parameters
     
