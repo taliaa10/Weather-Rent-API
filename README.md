@@ -19,10 +19,10 @@ Example Query Strings:
 {
     "status": "success",
     "data": {
-        "weather": "0.0343",
+        "weather": 0.0343,
         "query": {
             "city": "Houston",
-            "state": "tx",
+            "state": "TX",
             "startDate": "2017-08-01",
             "endDate": "2017-08-31",
             "weatherCondition": "precipIntensity"
@@ -51,8 +51,9 @@ Use Postman or any API dev tool to make a POST request of any variation of the q
 <h3>Rent data based on city:</h3>
 
 Questions:
-1. Which cities have a rent lower than \$2000?
-2. Cities that have rent equal $1500?
+1. Cities with rent between $1500 and $2000?
+2. Which cities have a rent lower than $2000?
+3. Cities that have rent equal $1500?
 
 Example Query Strings:
 1. /api/weather-rent/YOURAPIKEY?rent[gte]=1500&rent[lte]=2000
@@ -108,14 +109,12 @@ Questions:
 1. What cities have a rent less than $2000 but likely to be above 50 degrees Fahrenheit on New Year's Eve?<br>
 
 Example Query Strings:
-1. api/weather-rent/YOURAPIKEY?date=2018-12-31&weatherCondition=temparature&rent[lt]=2000&weather[gt]=50&page=1&limit=20
-
+1. /api/weather-rent/YOURAPIKEY?date=2018-12-31&weatherCondition=temperature&rent[lt]=2000&weather[gt]=50&page=1&limit=20
 #### Parameters
     
 #### Result
 
 ```json
-
 {
     "status": "success",
     "results": 13,
@@ -125,8 +124,8 @@ Example Query Strings:
             "city": "Jacksonville",
             "state": "FL",
             "rent": 1151,
-            "averageWeather": "65.5660",
-            "weatherType": "temparature",
+            "averageWeather": 65.566,
+            "weatherType": "temperature",
             "fiveYearAvgFrom": "2018-12-31"
         },
         {
@@ -134,8 +133,8 @@ Example Query Strings:
             "city": "Phoenix",
             "state": "AZ",
             "rent": 1247,
-            "averageWeather": "63.7000",
-            "weatherType": "temparature",
+            "averageWeather": 63.7,
+            "weatherType": "temperature",
             "fiveYearAvgFrom": "2018-12-31"
         },
         {
@@ -143,8 +142,8 @@ Example Query Strings:
             "city": "Las Vegas",
             "state": "NV",
             "rent": 1239,
-            "averageWeather": "51.3140",
-            "weatherType": "temparature",
+            "averageWeather": 51.314,
+            "weatherType": "temperature",
             "fiveYearAvgFrom": "2018-12-31"
         },
         {
@@ -152,8 +151,8 @@ Example Query Strings:
             "city": "Columbus",
             "state": "GA",
             "rent": 813,
-            "averageWeather": "54.1360",
-            "weatherType": "temparature",
+            "averageWeather": 54.136,
+            "weatherType": "temperature",
             "fiveYearAvgFrom": "2018-12-31"
         },
         {
@@ -161,8 +160,8 @@ Example Query Strings:
             "city": "Yuma",
             "state": "AZ",
             "rent": 933,
-            "averageWeather": "63.0200",
-            "weatherType": "temparature",
+            "averageWeather": 63.02,
+            "weatherType": "temperature",
             "fiveYearAvgFrom": "2018-12-31"
         },
         {
@@ -170,8 +169,8 @@ Example Query Strings:
             "city": "Visalia",
             "state": "CA",
             "rent": 1236,
-            "averageWeather": "51.8260",
-            "weatherType": "temparature",
+            "averageWeather": 51.826,
+            "weatherType": "temperature",
             "fiveYearAvgFrom": "2018-12-31"
         },
         {
@@ -179,8 +178,8 @@ Example Query Strings:
             "city": "Charleston",
             "state": "SC",
             "rent": 1794,
-            "averageWeather": "54.0400",
-            "weatherType": "temparature",
+            "averageWeather": 54.04,
+            "weatherType": "temperature",
             "fiveYearAvgFrom": "2018-12-31"
         },
         {
@@ -188,8 +187,8 @@ Example Query Strings:
             "city": "Metairie",
             "state": "LA",
             "rent": 1525,
-            "averageWeather": "57.3600",
-            "weatherType": "temparature",
+            "averageWeather": 57.36,
+            "weatherType": "temperature",
             "fiveYearAvgFrom": "2018-12-31"
         },
         {
@@ -197,8 +196,8 @@ Example Query Strings:
             "city": "McAllen",
             "state": "TX",
             "rent": 1200,
-            "averageWeather": "58.8540",
-            "weatherType": "temparature",
+            "averageWeather": 58.854,
+            "weatherType": "temperature",
             "fiveYearAvgFrom": "2018-12-31"
         },
         {
@@ -206,8 +205,8 @@ Example Query Strings:
             "city": "Madera",
             "state": "CA",
             "rent": 1189,
-            "averageWeather": "52.6940",
-            "weatherType": "temparature",
+            "averageWeather": 52.694,
+            "weatherType": "temperature",
             "fiveYearAvgFrom": "2018-12-31"
         },
         {
@@ -215,8 +214,8 @@ Example Query Strings:
             "city": "Vero Beach",
             "state": "FL",
             "rent": 1443,
-            "averageWeather": "65.8060",
-            "weatherType": "temparature",
+            "averageWeather": 65.806,
+            "weatherType": "temperature",
             "fiveYearAvgFrom": "2018-12-31"
         },
         {
@@ -224,8 +223,8 @@ Example Query Strings:
             "city": "Davie",
             "state": "FL",
             "rent": 1953,
-            "averageWeather": "69.7860",
-            "weatherType": "temparature",
+            "averageWeather": 69.786,
+            "weatherType": "temperature",
             "fiveYearAvgFrom": "2018-12-31"
         },
         {
@@ -233,8 +232,8 @@ Example Query Strings:
             "city": "Rialto",
             "state": "CA",
             "rent": 1699,
-            "averageWeather": "58.7860",
-            "weatherType": "temparature",
+            "averageWeather": 58.786,
+            "weatherType": "temperature",
             "fiveYearAvgFrom": "2018-12-31"
         }
     ]
