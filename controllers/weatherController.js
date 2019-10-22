@@ -135,7 +135,7 @@ module.exports = {
       let weatherArray = [];
 
       allWeathers.forEach(weather => {
-        weatherArray.push(weather.currently["temperature"]);
+        weatherArray.push(weather.currently[weatherCondition]);
       });
 
       const result = (weatherArray.reduce((a, b) => a + b) / days).toFixed(4);

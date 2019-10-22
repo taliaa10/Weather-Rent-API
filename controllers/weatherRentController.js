@@ -123,7 +123,7 @@ module.exports = {
             );
 
             cityInfo = { ...city._doc };
-            cityInfo.averageWeather = averageWeather;
+            cityInfo.averageWeather = parseFloat(averageWeather);
             cityInfo.weatherType = weatherCondition;
             cityInfo.fiveYearAvgFrom = req.query.date;
 
@@ -133,9 +133,9 @@ module.exports = {
           filteredCities = cityArray.filter(city => {
             switch (w) {
               case "gt":
-                return parseInt(city.averageWeather) > parseInt(reqWeather);
+                return city.averageWeather > parseFloat(reqWeather);
               case "lt":
-                return parseInt(city.averageWeather) < parseInt(reqWeather);
+                return city.averageWeather < parseFloat(reqWeather);
             }
           });
 
