@@ -97,7 +97,7 @@ rent[gt]=2000 rent is greater than 2000
 rent[lte]=2000 rent is less than or equal to 2000
 rent[gte]=2000 rent is greater or equal to than 2000
 ```
-lt(e) and gt(e) params can also be combined in the url to get in between rents.
+lt(e) and gt(e) params can also be combined in the url to get in-between rents.
 
 #### Example Query Strings:
 1. https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY]?rent[lt]=1000
