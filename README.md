@@ -26,6 +26,7 @@ Questions:
 - **endDate** - end date of date range. Must be in YYYY-MM-DD format.
 
 - **weatherCondition** - The type of weather you would like to query
+
 Common weather conditions include:
 `weatherCondition`
 `precipIntensity`
