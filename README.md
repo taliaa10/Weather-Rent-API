@@ -5,6 +5,7 @@ API Link: https://weather-rent-app.herokuapp.com
 ## API Request Types
 
 ### Average weather over a date range request:
+https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY]?city=[city]&state=[state]&startDate=[startDate]&endDate=[endDate]&weatherCondition=[weatherCondition]
 
 This request returns the average weather over the specified date range for a specified weather type and city.
 
@@ -14,14 +15,20 @@ Questions:
 
 #### Parameters
 
-**YOURAPIKEY** - provided upon request
+- **YOURAPIKEY** - provided upon request
 
-**city** - city of location as a string
+- **city** - city of location as a string
 
-**state** - state of location as a string
+- **state** - state of location as a string
+
+- **startDate** - start date of date range. Must be in YYYY-MM-DD format.
+
+- **endDate** - end date of date range. Must be in YYYY-MM-DD format.
+
+- **weatherCondition** - The type of weather you would like to query
 
 #### Example Query Strings:
-1. https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY]?city=Houston&state=TX&startDate=2017-08-01&endDate=2017-08-31&weatherCondition=precipIntensit
+1. https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY]?city=Houston&state=TX&startDate=2017-08-01&endDate=2017-08-31&weatherCondition=precipIntensity
     
 #### Result
 
