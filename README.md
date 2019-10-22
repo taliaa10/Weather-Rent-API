@@ -30,7 +30,7 @@ https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY
 - **weatherCondition** - The type of weather you would like to query.
 
 Common weather conditions include:
-`weatherCondition`
+`temperature`
 `precipIntensity`
 `humidity`
 
@@ -162,7 +162,10 @@ https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY
 
 - **weatherCondition** - The type of weather you would like to query.
 
-Common weather conditions include: `weatherCondition` `precipIntensity` `humidity`
+Common weather conditions include: 
+`temperature`
+`precipIntensity`
+`humidity`
 
 - **weather** - integer of the desired weatherCondition.
 
