@@ -175,8 +175,6 @@ Common weather conditions include:
 
 - **rent** - integer of the desired rent.
 
-The results are limited to 20 per page and the page parameter can be used to go to different pages to see more results.
-
 valid query keys for the rent and weather parameter include:
 ```
 rent=2000 rent equals 2000
@@ -189,6 +187,8 @@ weather[lt]=50 weather is less than 50
 weather[gt]=50 weather is greater than 50
 
 ```
+
+The results are limited to 20 per page and the page parameter can be used to go to different pages to see more results.
 
 Example Query Strings:
 1. /api/weather-rent/YOURAPIKEY?date=2018-12-31&weatherCondition=temperature&weather[gt]=50&rent[lt]=2000&page=1&limit=20
