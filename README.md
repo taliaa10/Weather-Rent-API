@@ -99,46 +99,53 @@ rent[gte]=2000 rent is greater or equal to than 2000
 
 #### Example Query Strings:
 1. https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY]?rent[lt]=1000
-1. https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY]?rent[lt]=3000&rent[gte]=2000
 2. https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY]?rent=1500
+3. https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY]?rent[lt]=3000&rent[gte]=2000
     
 #### Result
 
 ```json
 {
     "status": "success",
-    "results": 5,
+    "results": 1342,
     "data": [
         {
-            "_id": "5dabcaf3032ab97b9eff512e",
-            "city": "West Jordan",
-            "state": "UT",
-            "rent": 1500
-        },
-        {
-            "_id": "5dabcaf3032ab97b9eff621d",
-            "city": "Morrisville",
-            "state": "PA",
-            "rent": 1500
-        },
-        {
-            "_id": "5dabcaf3032ab97b9eff643a",
-            "city": "Princeton",
-            "state": "TX",
-            "rent": 1500
-        },
-        {
-            "_id": "5dabcaf4032ab97b9eff6b29",
-            "city": "Fairfax",
-            "state": "VT",
-            "rent": 1500
-        },
-        {
-            "_id": "5dabcaf4032ab97b9eff77fe",
-            "city": "Ellenburg",
+            "_id": "5dabcaf3032ab97b9eff4fff",
+            "city": "New York",
             "state": "NY",
-            "rent": 1500
+            "rent": 2322
+        },
+        {
+            "_id": "5dabcaf3032ab97b9eff5006",
+            "city": "Los Angeles",
+            "state": "CA",
+            "rent": 2753
+        },
+        {
+            "_id": "5dabcaf3032ab97b9eff5082",
+            "city": "Oceanside",
+            "state": "CA",
+            "rent": 2354
+        },
+        {
+            "_id": "5dabcaf3032ab97b9eff5114",
+            "city": "Murrieta",
+            "state": "CA",
+            "rent": 2047
+        },
+        {
+            "_id": "5dabcaf3032ab97b9eff5150",
+            "city": "South Gate",
+            "state": "CA",
+            "rent": 2171
+        },
+        {
+            "_id": "5dabcaf3032ab97b9eff522d",
+            "city": "La Mesa",
+            "state": "CA",
+            "rent": 2376
         }
+        ...
     ]
 }
 ```
