@@ -162,6 +162,8 @@ https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY
 
 - **weatherCondition** - The type of weather you would like to query.
 
+Common weather conditions include: `weatherCondition` `precipIntensity` `humidity`
+
 - **weather** - integer of the desired weatherCondition.
 
 - **city** - city of location as a string.
