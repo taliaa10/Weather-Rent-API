@@ -151,7 +151,7 @@ lt(e) and gt(e) params can also be combined in the url to get in-between rents.
 Questions:
 1. What cities have a rent less than $2000 but likely to be above 50 degrees Fahrenheit on New Year's Eve?
 
-This request returns a list of cities based on the specified rent, and specified weather and weather type, with the average of that weather of a date from the last 5 years.
+This request returns a list of cities based on the specified rent, and specified weather and weather type, with the average of that weather from the last 5 years of the specified date.
 
 https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY]?date=2018-12-31&weatherCondition=dewPoint&weather[gt]=20&rent=1000&page=1&limit=20
 
