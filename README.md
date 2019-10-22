@@ -109,7 +109,7 @@ Questions:
 1. What cities have a rent less than $2000 but likely to be above 50 degrees Fahrenheit on New Year's Eve?<br>
 
 Example Query Strings:
-1. /api/weather-rent/YOURAPIKEY?date=2018-12-31&weatherCondition=temperature&rent[lt]=2000&weather[gt]=50&page=1&limit=20
+1. /api/weather-rent/YOURAPIKEY?date=2018-12-31&weatherCondition=temperature&weather[gt]=50&rent[lt]=2000&page=1&limit=20
 #### Parameters
     
 #### Result
