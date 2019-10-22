@@ -2,16 +2,26 @@
 
 API Link: https://weather-rent-app.herokuapp.com
 
-### Average weather query over a date range:
+## API Request Types
+
+### Average weather over a date range request:
+
+This request returns the average weather over the specified date range for a specified weather type and city.
 
 Questions:
 1. What was the average rainfall in Houston in August 2017?
 2. Average humidity in San Francisco in June 2019?
 
 Example Query Strings:
-1. **/api/weather-rent/YOURAPIKEY?city=Houston&state=tx&startDate=2017-08-01&endDate=2017-08-31&weatherCondition=precipIntensity**
+1. **/api/weather-rent/[YOURAPIKEY?]city=[city]&state=tx&startDate=2017-08-01&endDate=2017-08-31&weatherCondition=precipIntensity**
 
 #### Parameters
+
+YOURAPIKEY - provided upon request
+
+city
+
+state
     
 #### Result
 
