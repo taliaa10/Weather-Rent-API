@@ -13,7 +13,7 @@ Questions:
 2. Average humidity in San Francisco in June 2019?
 
 Example Query Strings:
-1. **/api/weather-rent/[YOURAPIKEY?]city=[city]&state=tx&startDate=2017-08-01&endDate=2017-08-31&weatherCondition=precipIntensity**
+1. https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY]?city=Houston&state=TX&startDate=2017-08-01&endDate=2017-08-31&weatherCondition=precipIntensity
 
 #### Parameters
 
