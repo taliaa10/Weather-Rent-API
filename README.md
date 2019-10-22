@@ -72,7 +72,7 @@ Use Postman or any API dev tool to make a POST request of any variation of the q
 
 
 <hr>
-### Cities based on rent request:
+<h3>Cities based on rent request:</h3>
 
 Questions:
 1. Cities with rent between $1500 and $2000?
@@ -145,7 +145,7 @@ rent[gte]=2000 rent is greater or equal to than 2000
 ```
 
 <hr>
-### Average weather query over a date range and rent in city info
+<h3>Average weather over a date range and rent request:</h3>
 
 Questions:
 1. What cities have a rent less than $2000 but likely to be above 50 degrees Fahrenheit on New Year's Eve?
