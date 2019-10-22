@@ -26,10 +26,10 @@ Questions:
 - **endDate** - end date of date range. Must be in YYYY-MM-DD format.
 
 - **weatherCondition** - The type of weather you would like to query
->> Common weather conditions include:
->>> `weatherCondition`
->>> `precipIntensity`
->>> `humidity`
+Common weather conditions include:
+`weatherCondition`
+`precipIntensity`
+`humidity`
 
 #### Example Query Strings:
 1. https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY]?city=Houston&state=TX&startDate=2017-08-01&endDate=2017-08-31&weatherCondition=precipIntensity
