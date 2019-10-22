@@ -69,20 +69,38 @@ Use Postman or any API dev tool to make a POST request of any variation of the q
 ```
 
 
-<br> <br>
+
 <hr>
-<h3>Rent data based on city:</h3>
+### Cities based on rent request:
 
 Questions:
 1. Cities with rent between $1500 and $2000?
 2. Which cities have a rent lower than $2000?
 3. Cities that have rent equal $1500?
 
-Example Query Strings:
-1. /api/weather-rent/YOURAPIKEY?rent[gte]=1500&rent[lte]=2000
-2. /api/weather-rent/YOURAPIKEY?rent=1500
+This request a list of cities based on the specified rent amount.
+
+https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY]?rent[lt]=[rentcost]
 
 #### Parameters
+
+- **YOURAPIKEY** - provided upon request
+
+- **rent** - integer of the desired rent
+
+valid query keys for the rent parameter
+```
+rent=2000 rent equals 2000
+rent[lt]=2000 rent is less than 2000
+rent[gt]=2000 rent is greater than 2000
+rent[lte]=2000 rent is less than or equal to 2000
+rent[gte]=2000 rent is greater or equal to than 2000
+```
+
+#### Example Query Strings:
+1. https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY]?rent[lt]=1000
+1. https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY]?rent[lt]=3000&rent[gte]=2000
+2. https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY]?rent=1500
     
 #### Result
 
