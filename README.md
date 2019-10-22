@@ -12,16 +12,16 @@ Questions:
 1. What was the average rainfall in Houston in August 2017?
 2. Average humidity in San Francisco in June 2019?
 
-Example Query Strings:
-1. https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY]?city=Houston&state=TX&startDate=2017-08-01&endDate=2017-08-31&weatherCondition=precipIntensity
-
 #### Parameters
 
-YOURAPIKEY - provided upon request
+**YOURAPIKEY** - provided upon request
 
-city
+**city** - city of location as a string
 
-state
+**state** - state of location as a string
+
+#### Example Query Strings:
+1. https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY]?city=Houston&state=TX&startDate=2017-08-01&endDate=2017-08-31&weatherCondition=precipIntensit
     
 #### Result
 
