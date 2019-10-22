@@ -11,22 +11,23 @@ Questions:
 2. Average humidity in San Francisco in June 2019?
 
 This request returns the average weather over the specified date range for a specified weather type and city.
+Temperatures are in Fahrenheit.
 
 https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY]?city=[city]&state=[state]&startDate=[startDate]&endDate=[endDate]&weatherCondition=[weatherCondition]
 
 #### Parameters
 
-- **YOURAPIKEY** - provided upon request
+- **YOURAPIKEY** - provided upon request.
 
-- **city** - city of location as a string
+- **city** - city of location as a string.
 
-- **state** - state of location as a string
+- **state** - state of location as a string.
 
 - **startDate** - start date of date range. Must be in YYYY-MM-DD format.
 
 - **endDate** - end date of date range. Must be in YYYY-MM-DD format.
 
-- **weatherCondition** - The type of weather you would like to query
+- **weatherCondition** - The type of weather you would like to query.
 
 Common weather conditions include:
 `weatherCondition`
@@ -78,17 +79,17 @@ Questions:
 2. Which cities have a rent lower than $2000?
 3. Cities that have rent equal $1500?
 
-This request a list of cities based on the specified rent amount.
+This request returns a list of cities based on the specified rent amount. Rent is in USD.
 
 https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY]?rent[lt]=[rentcost]
 
 #### Parameters
 
-- **YOURAPIKEY** - provided upon request
+- **YOURAPIKEY** - provided upon request.
 
-- **rent** - integer of the desired rent
+- **rent** - integer of the desired rent.
 
-valid query keys for the rent parameter
+valid query keys for the rent parameter include:
 ```
 rent=2000 rent equals 2000
 rent[lt]=2000 rent is less than 2000
@@ -144,14 +145,48 @@ rent[gte]=2000 rent is greater or equal to than 2000
 ```
 
 <hr>
-<h3>Average weather query over a date range and rent in city info:</h3>
+### Average weather query over a date range and rent in city info
 
 Questions:
-1. What cities have a rent less than $2000 but likely to be above 50 degrees Fahrenheit on New Year's Eve?<br>
+1. What cities have a rent less than $2000 but likely to be above 50 degrees Fahrenheit on New Year's Eve?
+
+This request returns a list of cities based on the specified rent, and specified weather and weather type, with the average of that weather of a date from the last 5 years.
+
+https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY]?rdate=2018-12-31&weatherCondition=dewPoint&weather[gt]=20&rent=1000&page=1&limit=20
+
+#### Parameters
+
+- **YOURAPIKEY** - provided upon request.
+
+- **date** -  Must be in YYYY-MM-DD format.
+
+- **weatherCondition** - The type of weather you would like to query.
+
+- **weather** - integer of the desired weatherCondition.
+
+- **city** - city of location as a string.
+
+- **state** - state of location as a string.
+
+- **rent** - integer of the desired rent.
+
+The results are limited to 20 per page and the page parameter can be used to go to different pages to see more results.
+
+valid query keys for the rent and weather parameter include:
+```
+rent=2000 rent equals 2000
+rent[lt]=2000 rent is less than 2000
+rent[gt]=2000 rent is greater than 2000
+rent[lte]=2000 rent is less than or equal to 2000
+rent[gte]=2000 rent is greater or equal to than 2000
+
+weather[lt]=50 weather is less than 50
+weather[gt]=50 weather is greater than 50
+
+```
 
 Example Query Strings:
 1. /api/weather-rent/YOURAPIKEY?date=2018-12-31&weatherCondition=temperature&weather[gt]=50&rent[lt]=2000&page=1&limit=20
-#### Parameters
     
 #### Result
 
