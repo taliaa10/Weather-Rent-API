@@ -26,6 +26,10 @@ Questions:
 - **endDate** - end date of date range. Must be in YYYY-MM-DD format.
 
 - **weatherCondition** - The type of weather you would like to query
+>> Common weather conditions include:
+>>> `weatherCondition`
+>>> `precipIntensity`
+>>> `humidity`
 
 #### Example Query Strings:
 1. https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY]?city=Houston&state=TX&startDate=2017-08-01&endDate=2017-08-31&weatherCondition=precipIntensity
@@ -48,13 +52,13 @@ Questions:
 }
 ```
 
-<h3>Bonus:</h3>
+### Bonus:
 
 Post direct question to DialogFlow and get a fully automated, human-like response!<br>
 ![](df.png) <br><br>
 
 Use Postman or any API dev tool to make a POST request of any variation of the question below at the endpoint
-<b>api/df_text_query<b>
+**api/df_text_query**
     
 ```json
 {
