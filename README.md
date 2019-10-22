@@ -152,7 +152,7 @@ Questions:
 
 This request returns a list of cities based on the specified rent, and specified weather and weather type, with the average of that weather of a date from the last 5 years.
 
-https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY]?rdate=2018-12-31&weatherCondition=dewPoint&weather[gt]=20&rent=1000&page=1&limit=20
+https://<span></span>weather-rent-app.herokuapp.com/api/weather-rent/[YOURAPIKEY]?date=2018-12-31&weatherCondition=dewPoint&weather[gt]=20&rent=1000&page=1&limit=20
 
 #### Parameters
 
