@@ -66,7 +66,7 @@ module.exports = {
         );
 
         data = {
-          weather: weatherResult,
+          weather: parseFloat(weatherResult),
           query
         };
       } else if (
@@ -144,7 +144,6 @@ module.exports = {
           console.log(error.message);
         }
       } else if (req.query.hasOwnProperty("date")) {
-        console.log(req.query);
         // GET COORDS FOR CITY ENTERED
         const coords = await weatherController.fetchCoords(
           req.query.city,
@@ -156,7 +155,7 @@ module.exports = {
         );
         // GETTING ONE WEATHER FOR ON DATE
         let weather = await weatherController.fetchWeather(coords, time);
-        weatherResult = weather.daily.data[0][weatherCondition];
+        weatherResult = parseFloat(weather.daily.data[0][weatherCondition]);
 
         data = weatherResult;
       } else if (req.query.hasOwnProperty("rent")) {
