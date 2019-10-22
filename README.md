@@ -138,14 +138,7 @@ rent[gte]=2000 rent is greater or equal to than 2000
             "city": "South Gate",
             "state": "CA",
             "rent": 2171
-        },
-        {
-            "_id": "5dabcaf3032ab97b9eff522d",
-            "city": "La Mesa",
-            "state": "CA",
-            "rent": 2376
         }
-        ...
     ]
 }
 ```
