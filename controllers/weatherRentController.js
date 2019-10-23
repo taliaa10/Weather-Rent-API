@@ -31,6 +31,15 @@ module.exports = {
 
       const weatherCondition = req.query.weatherCondition;
 
+      // console.log(query);
+
+      // // PAGINATION
+      // const page = req.query.page * 1 || 1;
+      // const limit = req.query.limit * 1 || 100;
+      // const skip = (page - 1) * limit;
+
+      // query = query.skip(skip).limit(limit);
+
       if (
         req.query.hasOwnProperty("endDate") &&
         req.query.hasOwnProperty("startDate")
@@ -81,7 +90,6 @@ module.exports = {
         const reqWeather = Object.values(req.query.weather)[0];
 
         let cityArray = [];
-        let query;
         try {
           // GETTING WEATHERS FOR ALL CIITES
           query = City.find(JSON.parse(queryStr));
@@ -89,19 +97,19 @@ module.exports = {
           console.log(error);
         }
 
+        // MAKE A NEW PAGINATION THAT PAGINATES THE FILTERED CITY WEATHER RESULTS
+        // INSTEAD OF JUST THE CITY RENT RESULTS FROM THE DATABASE.
+        // MAYBE THROW A WHILE LOOP AROUND THE QUERY AND FILTERED ARRAY
+        // THAT SAYS WHILE IT'S LESS THAN 20 + 1
+        // QUERY AND ADD MORE CITIES TO IT UNTIL THERE ARE 20 RESULTS
+        // ON THE NEXT PAGE GET THE QUERIED CITY RESULTS AND REPEAT
+
         // PAGINATION
         const page = req.query.page * 1 || 1;
-        const limit = req.query.limit * 1 || 100;
+        const limit = req.query.limit * 1 || 20;
         const skip = (page - 1) * limit;
 
         query = query.skip(skip).limit(limit);
-
-        if (req.query.page) {
-          const numCities = await City.countDocuments();
-          if (skip > numCities) {
-            console.log("this page does not exist");
-          }
-        }
 
         // GETTING QUERIES FROM DB
         let cities = await query;
@@ -141,7 +149,9 @@ module.exports = {
 
           data = filteredCities;
         } catch (error) {
-          console.log(error.message);
+          res.status(400).json({
+            error: error.message
+          });
         }
       } else if (req.query.hasOwnProperty("date")) {
         // GET COORDS FOR CITY ENTERED
@@ -157,10 +167,22 @@ module.exports = {
         let weather = await weatherController.fetchWeather(coords, time);
         weatherResult = parseFloat(weather.daily.data[0][weatherCondition]);
 
-        data = weatherResult;
+        data = {
+          weather: parseFloat(weatherResult),
+          query
+        };
       } else if (req.query.hasOwnProperty("rent")) {
         // RENT QUERY
-        rentResult = await City.find(JSON.parse(queryStr));
+        query = City.find(JSON.parse(queryStr));
+
+        // PAGINATION
+        const page = req.query.page * 1 || 1;
+        const limit = req.query.limit * 1 || 100;
+        const skip = (page - 1) * limit;
+
+        query = query.skip(skip).limit(limit);
+
+        let rentResult = await query;
 
         data = rentResult;
       }
@@ -168,7 +190,7 @@ module.exports = {
       res.status(200).json({
         status: "success",
         results: data.length,
-        data: data
+        data
       });
     } catch (error) {
       res.status(400).json({
