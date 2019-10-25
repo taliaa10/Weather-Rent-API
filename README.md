@@ -1,6 +1,8 @@
 # Weather Rent API
 
-This API combines weather and rent information for you to make an informed decision on the best place to live.
+![](api-pic.png)
+
+### This API combines weather and rent information for you to make an informed decision on the best place to live.
 
 API Link: https://weather-rent-app.herokuapp.com
 
@@ -45,7 +47,7 @@ Common weather conditions include:
 
 ```json
 {
-  "status": "success",
+  "status": "success"
   "data": {
     "weather": 0.0343,
     "query": {
@@ -77,7 +79,7 @@ Use Postman or any API dev tool to make a POST request of any variation of the q
 
 ```json
 "text": [
-    "The average precipIntensity in Houston was 0.0343"
+    "The average rainfall in Houston was 0.0343"
  ]
 ```
 
