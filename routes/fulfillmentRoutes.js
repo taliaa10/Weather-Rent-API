@@ -13,21 +13,27 @@ module.exports = app => {
     const time = weatherController.getEpoch(date);
 
     const dates = weatherController.getAllDates(startDate, endDate);
-    const allDates = weatherController.datesEpoch(dates);
+    // const allDates = weatherController.datesEpoch(dates);
+    const allDates = dates.map(date => weatherController.getEpoch(date));
     const days = allDates.length;
 
     const stat = agent.parameters.stat;
     const weatherCondition = agent.parameters.weatherCondition;
 
     getAverageWeather = async agent => {
-      console.log(req.query);
       try {
         const coords = await weatherController.fetchCoords(city);
+        console.log(coords);
 
-        const allWeathers = await weatherController.fetchEachDateWeather(
-          coords,
-          allDates
+        // const allWeathers = await weatherController.fetchEachDateWeather(
+        //   coords,
+        //   allDates
+        // );
+
+        const allWeathers = await Promise.all(
+          allDates.map(date => weatherController.fetchWeather(coords, date))
         );
+        console.log(allWeathers);
 
         let result = await weatherController.getAverage(
           allWeathers,
