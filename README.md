@@ -16,7 +16,7 @@ Questions:
 This request returns the average weather over the specified date range for a specified weather type and city.
 Temperatures are in Fahrenheit.
 
-https://<span></span>weather-rent-app.herokuapp.com/api/[YOURAPIKEY]?city=[city]&state=[state]&startDate=[startDate]&endDate=[endDate]&weatherCondition=[weatherCondition]
+https://<span></span>weather-rent-app.herokuapp.com/api/?key=[YOURAPIKEY]&city=[city]&state=[state]&startDate=[startDate]&endDate=[endDate]&weatherCondition=[weatherCondition]
 
 #### Parameters
 
@@ -39,7 +39,7 @@ Common weather conditions include:
 
 #### Example Query Strings:
 
-1. https://<span></span>weather-rent-app.herokuapp.com/api/[YOURAPIKEY]?city=Houston&state=TX&startDate=2017-08-01&endDate=2017-08-31&weatherCondition=precipIntensity
+1. https://<span></span>weather-rent-app.herokuapp.com/api/?key=[YOURAPIKEY]&city=Houston&state=TX&startDate=2017-08-01&endDate=2017-08-31&weatherCondition=precipIntensity
 
 #### Result
 
@@ -92,7 +92,7 @@ Questions:
 
 This request returns a list of cities based on the specified rent amount. Rent is in USD.
 
-https://<span></span>weather-rent-app.herokuapp.com/api/[YOURAPIKEY]?rent[lt]=[rentcost]
+https://<span></span>weather-rent-app.herokuapp.com/api/?key=[YOURAPIKEY]&rent[lt]=[rentcost]
 
 #### Parameters
 
@@ -114,9 +114,9 @@ lt(e) and gt(e) params can also be combined in the url to get in-between rents.
 
 #### Example Query Strings:
 
-1. https://<span></span>weather-rent-app.herokuapp.com/api/[YOURAPIKEY]?rent[lt]=1000
-2. https://<span></span>weather-rent-app.herokuapp.com/api/[YOURAPIKEY]?rent=1500
-3. https://<span></span>weather-rent-app.herokuapp.com/api/[YOURAPIKEY]?rent[lt]=3000&rent[gte]=2000
+1. https://<span></span>weather-rent-app.herokuapp.com/api/?key=[YOURAPIKEY]&rent[lt]=1000
+2. https://<span></span>weather-rent-app.herokuapp.com/api/?key=[YOURAPIKEY]&rent=1500
+3. https://<span></span>weather-rent-app.herokuapp.com/api/?key=[YOURAPIKEY]&rent[lt]=3000&rent[gte]=2000
 
 #### Result
 
@@ -168,7 +168,7 @@ Questions:
 
 This request returns a list of cities based on the specified rent, and specified weather and weather type, with the average of that weather from the last 5 years of the specified date.
 
-https://<span></span>weather-rent-app.herokuapp.com/api/[YOURAPIKEY]?date=2018-12-31&weatherCondition=dewPoint&weather[gt]=20&rent=1000&page=1&limit=20
+https://<span></span>weather-rent-app.herokuapp.com/api/?key=[YOURAPIKEY]&date=2018-12-31&weatherCondition=dewPoint&weather[gt]=20&rent=1000&page=1&limit=20
 
 #### Parameters
 
@@ -209,7 +209,7 @@ The results are limited to 20 per page and the page parameter can be used to go 
 
 Example Query Strings:
 
-1. /api/YOURAPIKEY?date=2018-12-31&weatherCondition=temperature&weather[gt]=50&rent[lt]=2000&page=1&limit=20
+1. /api/?[YOURAPIKEY]&date=2018-12-31&weatherCondition=temperature&weather[gt]=50&rent[lt]=2000&page=1&limit=20
 
 #### Result
 
