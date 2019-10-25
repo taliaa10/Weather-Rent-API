@@ -11,6 +11,7 @@ module.exports = app => {
       req.body.text,
       req.body.parameters
     );
+    console.log(responses);
     res.status(200).send(responses);
   });
 

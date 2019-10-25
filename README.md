@@ -1,5 +1,7 @@
 # Weather Rent API
 
+This API combines weather and rent information for you to make an informed decision on the best place to live.
+
 API Link: https://weather-rent-app.herokuapp.com
 
 ## API Request Types
@@ -69,6 +71,14 @@ Use Postman or any API dev tool to make a POST request of any variation of the q
 {
   "text": "What was the average rainfall in Houston in August 2017?"
 }
+```
+
+#### Result
+
+```json
+"text": [
+    "The average precipIntensity in Houston was 0.0343"
+ ]
 ```
 
 <hr>

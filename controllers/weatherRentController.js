@@ -1,49 +1,28 @@
 const weatherController = require("../controllers/weatherController");
 const City = require("../models/cityModel");
+const { validationResult } = require("express-validator");
+const APIFeatures = require("../utils/apiFeatures");
 
 module.exports = {
-  getAllInfo: async (req, res, next) => {
+  getInfo: async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
     let query = req.query;
     let weatherResult;
-    let rentResult;
+    let city = req.query.city;
+    let state = req.query.state;
+    let weatherCondition = req.query.weatherCondition;
     let data;
 
-    try {
-      // 1) Filtering
-      const queryObj = { ...req.query };
-      const excludedFields = [
-        "page",
-        "sort",
-        "limit",
-        "fields",
-        "city",
-        "date",
-        "weatherCondition",
-        "weather",
-        "weather[gt]",
-        "weather[lt]"
-      ];
-      excludedFields.forEach(el => delete queryObj[el]);
-
-      //2) Advanced filtering
-      let queryStr = JSON.stringify(queryObj);
-      queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`);
-
-      const weatherCondition = req.query.weatherCondition;
-
-      // console.log(query);
-
-      // // PAGINATION
-      // const page = req.query.page * 1 || 1;
-      // const limit = req.query.limit * 1 || 100;
-      // const skip = (page - 1) * limit;
-
-      // query = query.skip(skip).limit(limit);
-
-      if (
-        req.query.hasOwnProperty("endDate") &&
-        req.query.hasOwnProperty("startDate")
-      ) {
+    if (
+      // AVG WEATHER OVER DATE PERIOD FOR ONE CITY
+      req.query.hasOwnProperty("endDate") &&
+      req.query.hasOwnProperty("startDate")
+    ) {
+      try {
         // GET START AND END DATES
         const endDate = `${req.query.endDate}T23:59:59-05:00`;
         const startDate = `${req.query.startDate}T00:00:00-05:00`;
@@ -51,20 +30,18 @@ module.exports = {
         // GET ALL DATES IN BETWEEN START AND END DATE
         const dates = weatherController.getAllDates(startDate, endDate);
         // CONVERT ALL DATES TO SECONDS
-        const allDates = weatherController.datesEpoch(dates);
+        // const allDates = weatherController.datesEpoch(dates);
+
+        const allDates = dates.map(date => weatherController.getEpoch(date));
         // GET THE NUMBER OF DAYS
         const days = allDates.length;
 
         // GET COORDS FOR CITY ENTERED
-        const coords = await weatherController.fetchCoords(
-          req.query.city,
-          req.query.state
-        );
+        const coords = await weatherController.fetchCoords(city, state);
 
-        //  GET ALL THE WEATHERS FOR EACH DAY
-        const allWeathers = await weatherController.fetchEachDateWeather(
-          coords,
-          allDates
+        // GET WEATHER FOR EACH DATE IN THAT CITY
+        const allWeathers = await Promise.all(
+          allDates.map(date => weatherController.fetchWeather(coords, date))
         );
 
         //  DIVIDE SUM OF WEATHER CONDITIONS FROM EACH DATE BY NUMBER OF DAYS
@@ -74,86 +51,100 @@ module.exports = {
           days
         );
 
+        delete query.key;
+
         data = {
           weather: parseFloat(weatherResult),
           query
         };
-      } else if (
-        req.query.hasOwnProperty("date") &&
-        req.query.hasOwnProperty("rent")
-      ) {
+
+        res.status(200).json({
+          status: "success",
+          results: data.length,
+          data
+        });
+      } catch (error) {
+        res.status(400).json({
+          error: error.message
+        });
+      }
+    } else if (
+      // GET WEATHER AND RENT
+      req.query.hasOwnProperty("date") &&
+      req.query.hasOwnProperty("rent")
+    ) {
+      try {
         const years = weatherController.getYearRange(req.query.date);
-        const allYears = weatherController.datesEpoch(years);
+
+        const allYears = years.map(year => weatherController.getEpoch(year));
+
         const days = allYears.length;
 
+        let cityArray = [];
+
+        // GETTING WEATHERS FOR ALL CIITES
+        query = new APIFeatures(City.find(), req.query).filter().paginate();
+        // console.log(query.query);
+
+        // Awaiting queries from database
+        let cities = await query.query;
+
+        await weatherController.asyncForEach(cities, async city => {
+          // Fetch coords for each city
+          city.coords = await weatherController.fetchCoords(city);
+
+          // Fetch weather for each year for each city
+          let allWeathers = await Promise.all(
+            allYears.map(year =>
+              weatherController.fetchWeather(city.coords, year)
+            )
+          );
+
+          // Get the average
+          let averageWeather = await weatherController.getDailyAverage(
+            allWeathers,
+            weatherCondition,
+            days
+          );
+
+          // Take a copy of the city obj from the db and build city and weather object
+          let cityInfo = { ...city._doc };
+          cityInfo.averageWeather = parseFloat(averageWeather);
+          cityInfo.weatherType = weatherCondition;
+          cityInfo.fiveYearAvgFrom = req.query.date;
+
+          cityArray.push(cityInfo);
+        });
+
+        // Get weather key and value from req.query
         const w = Object.keys(req.query.weather)[0];
         const reqWeather = Object.values(req.query.weather)[0];
 
-        let cityArray = [];
-        try {
-          // GETTING WEATHERS FOR ALL CIITES
-          query = City.find(JSON.parse(queryStr));
-        } catch (error) {
-          console.log(error);
-        }
+        // Filter cities for req weather
+        filteredCities = cityArray.filter(city => {
+          switch (w) {
+            case "gt":
+              return city.averageWeather > parseFloat(reqWeather);
+            case "lt":
+              return city.averageWeather < parseFloat(reqWeather);
+          }
+        });
 
-        // MAKE A NEW PAGINATION THAT PAGINATES THE FILTERED CITY WEATHER RESULTS
-        // INSTEAD OF JUST THE CITY RENT RESULTS FROM THE DATABASE.
-        // MAYBE THROW A WHILE LOOP AROUND THE QUERY AND FILTERED ARRAY
-        // THAT SAYS WHILE IT'S LESS THAN 20 + 1
-        // QUERY AND ADD MORE CITIES TO IT UNTIL THERE ARE 20 RESULTS
-        // ON THE NEXT PAGE GET THE QUERIED CITY RESULTS AND REPEAT
+        data = filteredCities;
 
-        // PAGINATION
-        const page = req.query.page * 1 || 1;
-        const limit = req.query.limit * 1 || 20;
-        const skip = (page - 1) * limit;
-
-        query = query.skip(skip).limit(limit);
-
-        // GETTING QUERIES FROM DB
-        let cities = await query;
-
-        try {
-          await weatherController.asyncForEach(cities, async city => {
-            city.coords = await weatherController.fetchCoords(city);
-
-            let allWeathers = await Promise.all(
-              allYears.map(year =>
-                weatherController.fetchWeather(city.coords, year)
-              )
-            );
-
-            let averageWeather = await weatherController.getDailyAverage(
-              allWeathers,
-              weatherCondition,
-              days
-            );
-
-            cityInfo = { ...city._doc };
-            cityInfo.averageWeather = parseFloat(averageWeather);
-            cityInfo.weatherType = weatherCondition;
-            cityInfo.fiveYearAvgFrom = req.query.date;
-
-            cityArray.push(cityInfo);
-          });
-
-          filteredCities = cityArray.filter(city => {
-            switch (w) {
-              case "gt":
-                return city.averageWeather > parseFloat(reqWeather);
-              case "lt":
-                return city.averageWeather < parseFloat(reqWeather);
-            }
-          });
-
-          data = filteredCities;
-        } catch (error) {
-          res.status(400).json({
-            error: error.message
-          });
-        }
-      } else if (req.query.hasOwnProperty("date")) {
+        res.status(200).json({
+          status: "success",
+          results: data.length,
+          data
+        });
+      } catch (error) {
+        res.status(400).json({
+          error: error.message
+        });
+      }
+    } else if (req.query.hasOwnProperty("date")) {
+      // Get weather for one city and one date
+      try {
         // GET COORDS FOR CITY ENTERED
         const coords = await weatherController.fetchCoords(
           req.query.city,
@@ -163,38 +154,49 @@ module.exports = {
         const time = weatherController.getEpoch(
           `${req.query.date}T12:00:00-06:00`
         );
-        // GETTING ONE WEATHER FOR ON DATE
+        // GETTING ONE WEATHER FOR ONE DATE
         let weather = await weatherController.fetchWeather(coords, time);
         weatherResult = parseFloat(weather.daily.data[0][weatherCondition]);
+
+        delete query.key;
 
         data = {
           weather: parseFloat(weatherResult),
           query
         };
-      } else if (req.query.hasOwnProperty("rent")) {
+
+        res.status(200).json({
+          status: "success",
+          results: data.length,
+          data
+        });
+      } catch (error) {
+        res.status(400).json({
+          error: error.message
+        });
+      }
+    } else if (req.query.hasOwnProperty("rent")) {
+      try {
         // RENT QUERY
-        query = City.find(JSON.parse(queryStr));
+        query = new APIFeatures(City.find(), req.query).filter();
 
-        // PAGINATION
-        const page = req.query.page * 1 || 1;
-        const limit = req.query.limit * 1 || 100;
-        const skip = (page - 1) * limit;
-
-        query = query.skip(skip).limit(limit);
-
-        let rentResult = await query;
+        let rentResult = await query.query;
 
         data = rentResult;
-      }
 
-      res.status(200).json({
-        status: "success",
-        results: data.length,
-        data
-      });
-    } catch (error) {
+        res.status(200).json({
+          status: "success",
+          results: data.length,
+          data
+        });
+      } catch (error) {
+        res.status(400).json({
+          error: error.message
+        });
+      }
+    } else {
       res.status(400).json({
-        error: error.message
+        error: "poorly formatted request"
       });
     }
   }

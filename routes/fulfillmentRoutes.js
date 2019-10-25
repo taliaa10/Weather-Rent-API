@@ -20,6 +20,7 @@ module.exports = app => {
     const weatherCondition = agent.parameters.weatherCondition;
 
     getAverageWeather = async agent => {
+      console.log(req.query);
       try {
         const coords = await weatherController.fetchCoords(city);
 
@@ -47,11 +48,6 @@ module.exports = app => {
     // INTENT FOR RENT COMPARISON
 
     // INTENT FOR RENT AND WEATHER INFO
-
-    // const data = {
-    //   weather: weather_data,
-    //   rent: rent_data
-    // };
 
     function fallback(agent) {
       agent.add(`WH I didn't understand`);

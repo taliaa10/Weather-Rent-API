@@ -28,24 +28,7 @@ module.exports = {
     return dateArray;
   },
 
-  datesEpoch: dates => {
-    let self = module.exports;
-    return dates.map(date => self.getEpoch(date));
-  },
-
-  fetchEachDateWeather: async (coords, allDates) => {
-    try {
-      let self = module.exports;
-
-      const promises = allDates.map(date => self.fetchWeather(coords, date));
-
-      const dateWeathers = await Promise.all(promises);
-      return dateWeathers;
-    } catch (error) {
-      console.log(error.message);
-    }
-  },
-
+  //  Get 5 year range
   getYearRange: date => {
     let yearArray = [];
     let currentDate = moment(date);
@@ -55,36 +38,6 @@ module.exports = {
       currentDate = moment(currentDate).subtract(1, "years");
     }
     return yearArray;
-  },
-
-  fetchEachCoordsWeather: async (allCoords, allDates) => {
-    try {
-      let self = module.exports;
-
-      const promises = allCoords.map(coord => {
-        const dates = allDates.map(date => self.fetchWeather(coord, date));
-        const prom = Promise.all(dates);
-        return prom;
-      });
-
-      const eachCoordsWeather = await Promise.all(promises);
-      return eachCoordsWeather;
-    } catch (error) {
-      console.log(error);
-    }
-  },
-
-  fetchEachCityCoords: async allCities => {
-    try {
-      let self = module.exports;
-
-      const promises = allCities.map(address => self.fetchCoords(address));
-
-      const allCoords = await Promise.all(promises);
-      return allCoords;
-    } catch (error) {
-      console.log(error.message);
-    }
   },
 
   // FETCH COORDINATES OF CITY FROM GOOGLE GEOCODE

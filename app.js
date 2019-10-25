@@ -29,4 +29,15 @@ require("./routes/dialogFlowRoutes")(app);
 // If the intent for user's input has fulfillment enabled it will also go through the fulfillmentRoutes
 require("./routes/fulfillmentRoutes")(app);
 
+app.all("*", (req, res, next) => {
+  res.status(404).json({
+    status: "fail",
+    message: `Can't find ${req.originalUrl} on this server!`
+  });
+});
+
+app.use((err, req, res, next) => {
+  res.status;
+});
+
 module.exports = app;
