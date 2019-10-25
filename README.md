@@ -1,5 +1,7 @@
 # Weather Rent API
 
+![](api-pic.png)
+
 ### This API combines weather and rent information for you to make an informed decision on the best place to live.
 
 API Link: https://weather-rent-app.herokuapp.com
